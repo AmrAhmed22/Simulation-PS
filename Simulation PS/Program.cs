@@ -31,6 +31,31 @@ namespace Simulation_PS
             return new int[] { l, r };
         }
 
+
+
+
+        // Assignment 2
+
+        public void ReverseString(char[] s)
+        {
+            int first = 0;
+            int last = s.Length - 1;
+
+            char temp;
+            while (first < last)
+            {
+                temp = s[first];
+                s[first] = s[last];
+                s[last] = temp;
+
+                first++;
+                last --;
+            }
+    
+        }
+
+
+
         static void Main(string[] args)
         {
 
