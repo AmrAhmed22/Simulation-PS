@@ -56,6 +56,19 @@ namespace Simulation_PS
 
 
 
+        // Assignment 3
+        public int SingleNumber(int[] nums)
+        {
+            int num=nums[0];
+
+            for (int i = 1; i < nums.Length; i++) 
+            {
+                num ^= nums[i];
+            }
+
+            return num;
+
+        }
         static void Main(string[] args)
         {
 
