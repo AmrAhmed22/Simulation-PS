@@ -71,6 +71,9 @@ namespace Simulation_PS
         }
 
 
+        // Assignment 4
+
+
         public bool IsAnagram(string s, string t)
         {
 
@@ -103,6 +106,31 @@ namespace Simulation_PS
             return true;
 
         }
+
+
+        public int GCD(int L, int R)
+        {
+
+            int temp;
+
+            while (R != 0)
+            {
+                temp = L;
+                L = R;
+                R = temp % R;
+            }
+
+            return L;
+
+        }
+
+
+
+        public string GcdOfStrings(string str1, string str2)
+        {
+            return (str1 + str2 == str2 + str1) ? str1.Substring(0,GCD(str2.Length, str1.Length)) : "";
+        }
+
 
 
         static void Main(string[] args)
