@@ -133,7 +133,52 @@ namespace Simulation_PS
 
 
 
-        static void Main(string[] args)
+
+        // Assignment 5 OOP 
+
+
+
+        // Time  complexity O(NlogN) 
+        // Space complexity O(1) 
+
+        // This solution as we learned (two pointers) in the workshop.
+        public int MaxOperations_Sort(int[] nums, int k)
+        {
+
+            Array.Sort(nums);
+
+            int left = 0;
+            int right = nums.Length - 1;
+            int operations = 0;
+
+            while (left < right)
+            {
+
+
+                if (nums[left] + nums[right] == k)
+                {
+                    operations++;
+                    left++;
+                    right--;
+                }
+                else if (nums[left] + nums[right] < k)
+                {
+                    left++;
+                }
+                else
+                {
+                    right--;
+                }
+            }
+
+            return operations;
+        
+        }
+
+
+
+
+static void Main(string[] args)
         {
 
 
