@@ -178,7 +178,72 @@ namespace Simulation_PS
 
 
 
-static void Main(string[] args)
+        // Time  complexity O(N) 
+        // Space complexity O(N)
+
+        // better answer (without sorting)
+        public int MaxOperations_Dictionary(int[] nums, int k)
+        {
+
+            Dictionary<int, int> mynums = new Dictionary<int, int>();
+
+
+            foreach (var n in nums)
+            {
+                if (!mynums.ContainsKey(n))
+                {
+                    mynums[n] = 1;
+                }
+                else
+                {
+                    mynums[n] += 1;
+                }
+
+            }
+
+
+            int operations = 0;
+
+
+            int val;
+            int secondnum;
+
+            foreach (var n in nums)
+            {
+                if (mynums[n] == 0)
+                {
+                    continue;
+                }
+
+                mynums[n] -= 1;
+
+                secondnum = k - n;
+
+                if (mynums.TryGetValue(secondnum, out val) && val > 0)
+                {
+                    operations++;
+
+                    mynums[secondnum] = val - 1;
+                }
+
+
+            }
+
+            return operations;
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+        static void Main(string[] args)
         {
 
 
