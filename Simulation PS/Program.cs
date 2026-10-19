@@ -418,6 +418,18 @@ namespace Simulation_PS
         }
 
 
+        public string ReverseWords(string s)
+        {
+
+
+            string[] words = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            Array.Reverse(words);
+
+            return string.Join(" ", words);
+        }
+
+
         static void Main(string[] args)
         {
 
