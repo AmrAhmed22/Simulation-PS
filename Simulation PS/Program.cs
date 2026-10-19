@@ -430,6 +430,45 @@ namespace Simulation_PS
         }
 
 
+
+        public int Compress(char[] chars)
+        {
+            int charsLength = chars.Length;
+            int readIndex = 0;
+            int writeIndex = 0;
+
+            while (readIndex < charsLength)
+            {
+                // reading and counting
+                char c = chars[readIndex];
+                int count = 0;
+
+                while (readIndex < charsLength && c == chars[readIndex])
+                {
+                    count++;
+                    readIndex++;
+                }
+
+                // writing
+                chars[writeIndex] = c;
+                writeIndex++;
+
+                if (count > 1)
+                {
+                    // count = 12
+                    // count.ToString() = "12"
+                    foreach (char digit in count.ToString())
+                    {
+                        chars[writeIndex] = digit;
+                        writeIndex++;
+                    }
+                }
+            }
+
+            return writeIndex;
+        }
+
+
         static void Main(string[] args)
         {
 
