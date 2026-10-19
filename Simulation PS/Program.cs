@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.CompilerServices;
+
 namespace Simulation_PS
 {
     internal class Program
@@ -49,9 +51,9 @@ namespace Simulation_PS
                 s[last] = temp;
 
                 first++;
-                last --;
+                last--;
             }
-    
+
         }
 
 
@@ -59,9 +61,9 @@ namespace Simulation_PS
         // Assignment 3
         public int SingleNumber(int[] nums)
         {
-            int num=nums[0];
+            int num = nums[0];
 
-            for (int i = 1; i < nums.Length; i++) 
+            for (int i = 1; i < nums.Length; i++)
             {
                 num ^= nums[i];
             }
@@ -88,19 +90,19 @@ namespace Simulation_PS
                     count[c]++;
                 else
                     count[c] = 1;
-                
+
             }
 
             foreach (var c in t)
             {
                 if (!count.ContainsKey(c))
-                    return false;  
+                    return false;
 
                 count[c]--;
-                
-                if (count[c] < 0) 
-                    return false;         
-            
+
+                if (count[c] < 0)
+                    return false;
+
             }
 
             return true;
@@ -128,7 +130,7 @@ namespace Simulation_PS
 
         public string GcdOfStrings(string str1, string str2)
         {
-            return (str1 + str2 == str2 + str1) ? str1.Substring(0,GCD(str2.Length, str1.Length)) : "";
+            return (str1 + str2 == str2 + str1) ? str1.Substring(0, GCD(str2.Length, str1.Length)) : "";
         }
 
 
@@ -172,7 +174,7 @@ namespace Simulation_PS
             }
 
             return operations;
-        
+
         }
 
 
@@ -279,14 +281,79 @@ namespace Simulation_PS
 
 
 
+        //Workshop
+
+
+        public int LongestOnes_Shrinking(int[] nums, int k)
+        {
+
+            int left = 0;
+            int maxOnes = 0;
+            int zeroCount = 0;
+
+            for (int right = 0; right < nums.Length; right++)
+            {
+                if (nums[right] == 0)
+                {
+                    zeroCount++;
+                }
+
+                while (zeroCount > k)
+                {
+                    if (nums[left] == 0)
+                    {
+                        zeroCount--;
+                    }
+                    left++;
+                }
+
+                int currentWindowSize = right - left + 1;
+
+                if (currentWindowSize > maxOnes)
+                {
+                    maxOnes = currentWindowSize;
+                }
+
+            }
+
+            return maxOnes;
+        }
+
+
+
+        public int LongestOnes_NonShrinking(int[] nums, int k)
+        {
+            int left = 0;
+            int right = 0;
+
+            for (; right < nums.Length; right++)
+            {
+                if (nums[right] == 0)
+                {
+                    k--;
+                }
+
+                if (k < 0)
+                {
+                    if (nums[left] == 0)
+                    {
+                        k++;
+                    }
+                    left++;
+                }
+            }
+
+            return right - left;
+        }
+
+
+
+
+
 
 
         static void Main(string[] args)
         {
-
-
-
-
 
 
         }
