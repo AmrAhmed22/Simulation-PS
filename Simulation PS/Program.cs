@@ -1,5 +1,6 @@
 ﻿
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Simulation_PS
 {
@@ -377,6 +378,44 @@ namespace Simulation_PS
         }
 
 
+
+
+        public string LongestCommonPrefix(string[] strs)
+        {
+            int minWordLength = strs[0].Length;
+
+            for (int i = 1; i < strs.Length; i++)
+            {
+                if (strs[i].Length < minWordLength)
+                {
+                    minWordLength = strs[i].Length;
+                }
+            }
+            StringBuilder result = new StringBuilder();
+            int p = 0;
+
+            // p here for characters
+            while (p < minWordLength)
+            {
+                char c = strs[0][p];
+                bool isCommon = true;
+
+                // i here for words
+                for (int i = 1; i < strs.Length; i++)
+                {
+                    if (c != strs[i][p])
+                    {
+                        isCommon = false;
+                        break;
+                    }
+                }
+                if (!isCommon) break;
+                result.Append(c);
+                p++;
+            }
+
+            return result.ToString();
+        }
 
 
         static void Main(string[] args)
