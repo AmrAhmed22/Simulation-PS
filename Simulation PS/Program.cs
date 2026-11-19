@@ -548,6 +548,39 @@ namespace Simulation_PS
 
 
 
+
+
+
+        public int[] SuccessfulPairs(int[] spells, int[] potions, long success)
+        {
+            Array.Sort(potions);
+            var result = new int[spells.Length];
+
+            for (int i = 0; i < spells.Length; i++)
+            {
+                long minPotion = (success + spells[i] - 1) / spells[i];
+                int index = LowerBound(potions, minPotion);
+                result[i] = potions.Length - index;
+            }
+
+            return result;
+        }
+
+        private int LowerBound(int[] arr, long target)
+        {
+            int low = 0, high = arr.Length;
+            while (low < high)
+            {
+                int mid = low + (high - low) / 2;
+                if (arr[mid] >= target)
+                    high = mid;
+                else
+                    low = mid + 1;
+            }
+            return low;
+        }
+
+
         static void Main(string[] args)
         {
 
